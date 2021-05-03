@@ -1,25 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from './logo.svg'
+import './index.css'
+import Footer from './Components/LayoutComponent/Footer'
+import Topbar from './Components/LayoutComponent/Topbar'
+import ControlCard from './Components/ControlCard'
 
 function App() {
+  const titleArray = ['banking', 'logistic', 'e-commerce', 'computer']
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Topbar appTitle="สวัสดี" />
+      {titleArray.map((titleElement) => (
+        <ControlCard title={titleElement} />
+      ))}
+
+      <Footer />
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
