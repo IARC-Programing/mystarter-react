@@ -1,4 +1,4 @@
-# Familar With React
+# Familiar With React
 
 ทดลองการใช้งาน React เบื้องต้น เพื่อให้คุ้นเคยกับ React ควรจะใช้ประกอบกับคู่มือหลักที่ [Reactjs.org](https://reactjs.org/docs/introducing-jsx.html) และ [Create React App](https://create-react-app.dev/docs/getting-started)
 
