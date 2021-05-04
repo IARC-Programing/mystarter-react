@@ -8,21 +8,23 @@ Open Intelligent Automation Research Center's Basic React Starter Project. This 
 
 ### Instruction and Code
 
-- ในโฟลเดอร์ [01-faimilat-with-react](01-familar-with-react) มีคำแนะนำอยู่ในไฟล์ Readme
+- ในโฟลเดอร์ [01-faimilar-with-react](01-familar-with-react) มีคำแนะนำอยู่ในไฟล์ Readme
 
 ### Information
 
 - [เริ่มเขียน JavaScript](https://github.com/IARC-Programing/mystarter-react/wiki/JavaScript-General-Guildline)
 - [เริ่มเขียน React เบื้องต้น](https://github.com/IARC-Programing/mystarter-react/wiki/Basic-React-JS-General-Guideline)
 
-## Project 2 useState and useEffect
+## Project 2 using Tailwind CSS and layouting
 
-## Project 3 Call APIs
+## Project 3 Routing with React Router
 
-## Project 4 Routing with React Router
+## Project 4 useState and useEffect
 
-## Project 5 Create Basic Express Backend
+## Project 5 Call APIs
 
-## Project 6 Access Database
+## Project 6 Create Basic Express Backend
 
-## Project 7 Deployment
+## Project 7 Access Database
+
+## Project 8 Deployment
