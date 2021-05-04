@@ -6,7 +6,8 @@
 
 1. [Basic Create React App](#basic-react)
 2. [Components and Props](#components-and-props)
-3. [การเรียกใช้ Function](#การเรียกใช้ฟังก์ชั่น)
+3. [การเรียกใช้ Function](#การเรียกใช้ฟังก์ชัน)
+4. [การ Map Array](#mapping-from-array)
 
 ![Project Screenshot](screenshot.png)
 
