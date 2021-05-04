@@ -21,7 +21,9 @@ export default function ControlCard({ title }) {
   return (
     <div>
       <h1>{title}</h1>
-      <button onClick={() => startProgram()}>Start</button>
+      <button className="bg-gray-500" onClick={() => startProgram()}>
+        Start
+      </button>
       <button onClick={() => restartProgram('world')}>Restart</button>
       <button>Down</button>
       {showData()}
