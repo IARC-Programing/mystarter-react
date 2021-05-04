@@ -1,7 +1,8 @@
 import logo from './logo.svg'
 import './index.css'
-import Footer from './Components/LayoutComponent/Footer'
-import Topbar from './Components/LayoutComponent/Topbar'
+import 'bootstrap/dist/css/bootstrap.min.css'
+import Footer from './Components/Footer'
+import Topbar from './Components/Topbar'
 import ControlCard from './Components/ControlCard'
 
 function App() {

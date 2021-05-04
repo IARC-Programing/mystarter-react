@@ -19,13 +19,18 @@ export default function ControlCard({ title }) {
   }
 
   return (
-    <div>
-      <h1>{title}</h1>
-      <button className="bg-gray-500" onClick={() => startProgram()}>
+    <div className="m-4">
+      <h4>{title}</h4>
+      <button className="btn btn-success" onClick={() => startProgram()}>
         Start
       </button>
-      <button onClick={() => restartProgram('world')}>Restart</button>
-      <button>Down</button>
+      <button
+        className="btn btn-warning"
+        onClick={() => restartProgram('world')}
+      >
+        Restart
+      </button>
+      <button className="btn btn-danger">Down</button>
       {showData()}
     </div>
   )
