@@ -1,21 +1,31 @@
 import React from 'react'
 import axios from 'axios'
+// axios.defaults.headers.common['Content-Type'] =
+//   'application/x-www-form-urlencoded'
+axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*'
+// axios.defaults.headers.common['Access-Control-Allow-Credentials'] = 'true'
+// axios.defaults.headers.common['Access-Control-Allow-Methods'] =
+//   'GET, POST, OPTIONS'
+// axios.defaults.headers.common['Access-Control-Allow-Headers'] =
+//   'Content-Type, Authorization'
 
-export default function ControlCard ({ serverData }) {
+axios.defaults.headers.common['Authorization'] = 'Basic YWRtaW46ZWltaHRzajQ='
+
+export default function ControlCard({ serverData }) {
   const url = serverData.controlURL
 
-  const handleStart = () => {
-    axios.post(url + '/docker/start').then(res => {
+  const handleUpdate = () => {
+    axios.post(url + '/docker/update').then((res) => {
       if (res.status === 200) {
-        alert('ทำการเปิดสำเร็จ')
+        alert('ทำการ update สำเร็จ')
       } else {
-        alert('ไม่สามารถทำการ Start ได้')
+        alert('ไม่สามารถทำการ update ได้')
       }
     })
   }
 
   const handleRestart = () => {
-    axios.post(url + '/docker/restart').then(res => {
+    axios.post(url + '/docker/restart').then((res) => {
       if (res.status === 200) {
         alert('ทำการ Restart สำเร็จ')
       } else {
@@ -25,7 +35,7 @@ export default function ControlCard ({ serverData }) {
   }
 
   const handleStop = () => {
-    axios.post(url + '/docker/stop').then(res => {
+    axios.post(url + '/docker/stop').then((res) => {
       if (res.status === 200) {
         alert('ทำการปิดสำเร็จ')
       } else {
@@ -34,30 +44,30 @@ export default function ControlCard ({ serverData }) {
     })
   }
   return (
-    <div className='border m-1 rounded-md p-2'>
-      <div className='flex'>
-        <div className='w-1/2'>
+    <div className="border m-1 rounded-md p-2">
+      <div className="flex">
+        <div className="w-1/2">
           <h2>โปรแกรม {serverData.name} </h2>
           <h3>URL {serverData.url}</h3>
           <h3>Control URL {serverData.controlURL}</h3>
         </div>
-        <div className='w-1/2 flex'>
+        <div className="w-1/2 flex">
           <button
-            className='rounded-md bg-green-500'
-            onClick={() => handleStart()}
+            className="rounded-md bg-green-500"
+            onClick={() => handleUpdate()}
           >
             {' '}
-            Start{' '}
+            Update{' '}
           </button>
           <button
-            className='rounded-md bg-yellow-500'
+            className="rounded-md bg-yellow-500"
             onClick={() => handleRestart()}
           >
             {' '}
             Restart{' '}
           </button>
           <button
-            className='rounded-md bg-red-500'
+            className="rounded-md bg-red-500"
             onClick={() => handleStop()}
           >
             {' '}
