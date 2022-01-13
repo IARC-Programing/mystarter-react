@@ -31,10 +31,51 @@ Open Intelligent Automation Research Center's Basic React Starter Project. This 
 
 ## Project 4 useState and useEffect
 
-## Project 5 Call APIs
+## Project 5 Create Basic Express Backend
 
-## Project 6 Create Basic Express Backend
+## Project 6 Access Database
 
-## Project 7 Access Database
+## Project 7 Call APIs
+
+### Instruction and Code
+
+- ลองใช้ axios ในการเรียก API จาก Backend แล้วเก็บมาไว้ใน State โดยการเรียกต้องเรียกผ่าน useEffect เพื่อไม่ให้มันทำหลายครั้ง
+
+  ```
+  const [data,setData] = useState();
+
+  useEffect (()=>{
+      axios.get('/user')
+      .then( (response) => {
+          setData(response.data)
+      })
+  },[])
+
+
+  ```
+
+- ลองเก็บค่า basedURL ลงใน env ของ Frontend (สร้างเป็น .env ขึ้นมาบน Project Root)
+- ลองทำ Error Handling ในการเรียก API เช่น การมี catch ต่อหลัง then หรือ การทำ async, await
+
+  ```
+   useEffect (()=>{
+   const getUser = async()=> {
+       try{
+            const response = await axios.get('/user')
+            setData(response.data)
+       }
+       catch(err){
+           console.error(err.message)
+       }
+   }
+    },[])
+
+  ```
+
+- ปัญหาที่อาจจะเกิดขึ้นคือเรื่องของ CORS
+
+### Information
+
+- [Axios](https://github.com/axios/axios)
 
 ## Project 8 Deployment
