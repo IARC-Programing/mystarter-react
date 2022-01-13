@@ -35,7 +35,14 @@ Open Intelligent Automation Research Center's Basic React Starter Project. This 
 
 ## Project 6 Access Database
 
-## Project 7 Call APIs
+## Project 7 Backend Structure
+
+### Instruction and Code
+
+- ลองจัดโค้ดส่วนของ Backend ให้อยู่ในรูปแบบที่ดี การแยกโค้ดออกมาเป็นโฟลเดอร์ต่าง ๆ เช่น constants,controller,models,routes,service
+- ดูตัวอย่างในโฟลเดอร์ [08-BE-Structure](08-BE-Structure)
+
+## Project 8 Call APIs
 
 ### Instruction and Code
 
@@ -73,7 +80,7 @@ Open Intelligent Automation Research Center's Basic React Starter Project. This 
 
 - [Axios](https://github.com/axios/axios)
 
-## Project 8 React-Hook-Form
+## Project 9 React-Hook-Form
 
 ### Instruction and Code
 
