@@ -82,7 +82,7 @@ useEffect(() => {}, [data]);
   }, []);
   ```
 
-- ลองเก็บค่า basedURL ลงใน env ของ Frontend (สร้างเป็น .env ขึ้นมาบน Project Root)
+- ลองเก็บค่า basedURL ลงใน env ของ Frontend (สร้างเป็น .env ขึ้นมาบน Project Root) เช่นเก็บค่า `https://swapi.dev/api/` ไว้บน .env โดยมันจะต้องตั้งชื่อมีคำนำหน้าว่า REACT_APP เช่น `REACT_APP_API_URL=https://swapi.dev/api/` แล้วลองใช้ค่าจาก Environment Variable เช่น เรียกออกมาโดยการใช้ `process.env.REACT_APP_API_URL` แล้วมาต่อ String หรือ เอามาทำเป็น
 - ลองทำ Error Handling ในการเรียก API เช่น การมี catch ต่อหลัง then หรือ การทำ async, await
 
   ```jsx
@@ -99,6 +99,7 @@ useEffect(() => {}, [data]);
   ```
 
 - ปัญหาที่อาจจะเกิดขึ้นคือเรื่องของ CORS
+- ลองหา Library ต่างๆ ที่ช่วยให้การทำงานสะดวกขึ้น เช่น `lodash` หรืออื่นๆ ตามความต้องการใน npm
 
 ### Information
 
@@ -108,18 +109,11 @@ useEffect(() => {}, [data]);
 
 ## Project 5 Routing with React Router
 
-## Project 5 Create Basic Express Backend
+## Project 6 Create Basic Express Backend
 
-## Project 6 Access Database
+## Project 7 Access Database and Basic Query
 
-## Project 7 Backend Structure
-
-### Instruction and Code
-
-- ลองจัดโค้ดส่วนของ Backend ให้อยู่ในรูปแบบที่ดี การแยกโค้ดออกมาเป็นโฟลเดอร์ต่าง ๆ เช่น constants,controller,models,routes,service
-- ดูตัวอย่างในโฟลเดอร์ [08-BE-Structure](08-BE-Structure)
-
-## Project 9 React-Hook-Form
+## Project 8 React-Hook-Form
 
 ### Instruction and Code
 
@@ -158,7 +152,37 @@ useEffect(() => {}, [data]);
   }
   ```
 
-## Information
+### Information
 
 - [React Hook Form](https://react-hook-form.com/get-started#Registerfields)
 - [MUI](https://mui.com/)
+
+## Project 9 Full 1 Model CRUD Frontend and Backend
+
+## Project 10 Frontend Structure
+
+## Project 11 Backend Structure
+
+### Instruction and Code
+
+- ลองจัดโค้ดส่วนของ Backend ให้อยู่ในรูปแบบที่ดี การแยกโค้ดออกมาเป็นโฟลเดอร์ต่าง ๆ เช่น constants,controller,models,routes,service
+- ดูตัวอย่างในโฟลเดอร์ [08-BE-Structure](08-BE-Structure)
+
+## Project 12 Basic React Context
+
+## Project 13 Integrate Redux to React
+
+## Project 14 Full CRUD with React-Redux
+
+## Project 15 Protect Your Backend and Basic Concept of Authentication and Token
+
+## Project 16 Building your project
+
+## Project 17 Basic Deployment and Container Deployment
+
+## Project 18 Workflow Deployment and CI/CD
+
+# Project 19 Download IARC Theme and play with it
+
+<hr/>
+With 💖, Create at 2022 from Intelligent Automation Reserach Center
