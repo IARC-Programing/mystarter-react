@@ -182,7 +182,7 @@ useEffect(() => {}, [data]);
 
 ## Project 18 Workflow Deployment and CI/CD
 
-# Project 19 Download IARC Theme and play with it
+## Project 19 Download IARC Theme and play with it
 
 <hr/>
 With 💖, Create at 2022 from Intelligent Automation Reserach Center
