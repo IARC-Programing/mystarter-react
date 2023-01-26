@@ -31,10 +31,95 @@ Open Intelligent Automation Research Center's Basic React Starter Project. This 
 
 ## Project 4 useState and useEffect
 
-## Project 5 Call APIs
+## Project 5 Create Basic Express Backend
 
-## Project 6 Create Basic Express Backend
+## Project 6 Access Database
 
-## Project 7 Access Database
+## Project 7 Backend Structure
 
-## Project 8 Deployment
+### Instruction and Code
+
+- ลองจัดโค้ดส่วนของ Backend ให้อยู่ในรูปแบบที่ดี การแยกโค้ดออกมาเป็นโฟลเดอร์ต่าง ๆ เช่น constants,controller,models,routes,service
+- ดูตัวอย่างในโฟลเดอร์ [08-BE-Structure](08-BE-Structure)
+
+## Project 8 Call APIs
+
+### Instruction and Code
+
+- ลองใช้ axios ในการเรียก API จาก Backend แล้วเก็บมาไว้ใน State โดยการเรียกต้องเรียกผ่าน useEffect เพื่อไม่ให้มันทำหลายครั้ง
+
+  ```jsx
+  const [data, setData] = useState()
+
+  useEffect(() => {
+    axios.get('/user').then((response) => {
+      setData(response.data)
+    })
+  }, [])
+  ```
+
+- ลองเก็บค่า basedURL ลงใน env ของ Frontend (สร้างเป็น .env ขึ้นมาบน Project Root)
+- ลองทำ Error Handling ในการเรียก API เช่น การมี catch ต่อหลัง then หรือ การทำ async, await
+
+  ```jsx
+  useEffect(() => {
+    const getUser = async () => {
+      try {
+        const response = await axios.get('/user')
+        setData(response.data)
+      } catch (err) {
+        console.error(err.message)
+      }
+    }
+  }, [])
+  ```
+
+- ปัญหาที่อาจจะเกิดขึ้นคือเรื่องของ CORS
+
+### Information
+
+- [Axios](https://github.com/axios/axios)
+
+## Project 9 React-Hook-Form
+
+### Instruction and Code
+
+- ลองใช้ React Hook Form กับการสร้างฟอร์ม และ การ POST ข้อมูลไปเก็บไว้ใน Database
+- การเอา Form Component จาก Library ง่าย ๆ เช่น rebass, reactstrap, headless ui, chakra-ui หรือ อาจจะเขียน Form Component เอง
+- การลง MUI ใน Project
+- การทำ Controlled Form โดยใช้ MUI กับ React Hook Form
+
+  ```jsx
+  import { useForm, Controller } from 'react-hook-form'
+  import { TextField } from '@mui/materials'
+  export default function App() {
+    const { handleSubmit, control } = useForm()
+
+    return (
+      <div>
+        <Controller
+          name='remark'
+          control={control}
+          defaultValue={manufacturingOrder?.remark || ''}
+          rules={{ required: false }}
+          render={({ field }) => (
+            <TextField
+              {...field}
+              label='หมายเหตุ'
+              fullWidth
+              size={'small'}
+              rows={3}
+              multiline={true}
+              helperText={errors.detail && 'กรุณาใส่ข้อมูล'}
+            />
+          )}
+        />
+      </div>
+    )
+  }
+  ```
+
+## Information
+
+- [React Hook Form](https://react-hook-form.com/get-started#Registerfields)
+- [MUI](https://mui.com/)
