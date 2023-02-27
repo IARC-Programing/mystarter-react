@@ -2,7 +2,6 @@
   "name": "02-tailwind-install",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://test-logistic.ap.ngrok.io",
   "dependencies": {
     "@craco/craco": "^6.1.2",
     "@testing-library/jest-dom": "^5.12.0",
@@ -22,7 +21,7 @@
     "web-vitals": "^1.1.1"
   },
   "scripts": {
-    "start": "craco start",
+    "start": "craco --openssl-legacy-provider start",
     "build": "craco build",
     "test": "craco test",
     "rs-start": "react-scripts start",

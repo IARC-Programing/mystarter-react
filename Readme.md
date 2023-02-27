@@ -37,26 +37,26 @@ Open Intelligent Automation Research Center's Basic React Starter Project. This 
 - ในโปรเจกต์ที่ทำอยู่ลองสร้างเป็นฟอร์มเล็กๆ ที่มีการเปลี่ยนค่าสเตจ เช่น สร้างฟอร์มรับค่าตัวเลข เมื่อมีการแก้ไขค่าตัวเลข ให้ไปเปลี่ยนค่าใน State และมีการนำค่าใน State ไปโชว์ เช่น
 
 ```jsx
-import React, { useState } from "react";
+import React, { useState } from 'react'
 export default function App() {
-  const [data, setData] = useState(0);
+  const [data, setData] = useState(0)
   return (
     <div>
       <input
         onChange={(event) => {
-          setData(event.target.value);
+          setData(event.target.value)
         }}
       />
       <div>Selected Number is {data}</div>
     </div>
-  );
+  )
 }
 ```
 
 - ลองทดลองการใช้งาน useEffect เช่นการสั่งให้ทุกครั้งที่ตัวเลขเปลี่ยน มีการ Alert ขึ้นมาที่หน้าจอ โดยที่ไม่เขียนไว้ตอนที่ Set Data แต่ใช้หลักของ useEffect ตรวจจับเวลาตัวเลขเกิดการเปลี่ยนแปลง
 
 ```jsx
-useEffect(() => {}, [data]);
+useEffect(() => {}, [data])
 ```
 
 ### Information
@@ -73,13 +73,13 @@ useEffect(() => {}, [data]);
 - ลองใช้ axios ในการเรียก API จาก OpenAPI ต่างๆ เช่น พวก Starwar API แล้วเก็บมาไว้ใน State โดยการเรียกต้องเรียกผ่าน useEffect เพื่อไม่ให้มันทำหลายครั้ง
 
   ```jsx
-  const [data, setData] = useState();
+  const [data, setData] = useState()
 
   useEffect(() => {
-    axios.get("https://swapi.dev/api/people/1/").then((response) => {
-      setData(response.data);
-    });
-  }, []);
+    axios.get('https://swapi.dev/api/people/1/').then((response) => {
+      setData(response.data)
+    })
+  }, [])
   ```
 
 - ลองเก็บค่า basedURL ลงใน env ของ Frontend (สร้างเป็น .env ขึ้นมาบน Project Root) เช่นเก็บค่า `https://swapi.dev/api/` ไว้บน .env โดยมันจะต้องตั้งชื่อมีคำนำหน้าว่า REACT_APP เช่น `REACT_APP_API_URL=https://swapi.dev/api/` แล้วลองใช้ค่าจาก Environment Variable เช่น เรียกออกมาโดยการใช้ `process.env.REACT_APP_API_URL` แล้วมาต่อ String หรือ เอามาทำเป็น
@@ -89,13 +89,13 @@ useEffect(() => {}, [data]);
   useEffect(() => {
     const getData = async () => {
       try {
-        const response = await axios.get("https://swapi.dev/api/people/1/");
-        setData(response.data);
+        const response = await axios.get('https://swapi.dev/api/people/1/')
+        setData(response.data)
       } catch (err) {
-        console.error(err.message);
+        console.error(err.message)
       }
-    };
-  }, []);
+    }
+  }, [])
   ```
 
 - ปัญหาที่อาจจะเกิดขึ้นคือเรื่องของ CORS
@@ -108,6 +108,10 @@ useEffect(() => {}, [data]);
 - [Starwar API](https://swapi.dev/)
 
 ## Project 5 Routing with React Router
+
+### Instruction and Code
+
+- ในโฟลเดอร์ [05-Routing](05-Routing/)
 
 ## Project 6 Create Basic Express Backend
 
@@ -123,32 +127,32 @@ useEffect(() => {}, [data]);
 - การทำ Controlled Form โดยใช้ MUI กับ React Hook Form
 
   ```jsx
-  import { useForm, Controller } from "react-hook-form";
-  import { TextField } from "@mui/materials";
+  import { useForm, Controller } from 'react-hook-form'
+  import { TextField } from '@mui/materials'
   export default function App() {
-    const { handleSubmit, control } = useForm();
+    const { handleSubmit, control } = useForm()
 
     return (
       <div>
         <Controller
           name='remark'
           control={control}
-          defaultValue={manufacturingOrder?.remark || ""}
+          defaultValue={manufacturingOrder?.remark || ''}
           rules={{ required: false }}
           render={({ field }) => (
             <TextField
               {...field}
               label='หมายเหตุ'
               fullWidth
-              size={"small"}
+              size={'small'}
               rows={3}
               multiline={true}
-              helperText={errors.detail && "กรุณาใส่ข้อมูล"}
+              helperText={errors.detail && 'กรุณาใส่ข้อมูล'}
             />
           )}
         />
       </div>
-    );
+    )
   }
   ```
 
