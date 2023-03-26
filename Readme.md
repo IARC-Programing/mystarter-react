@@ -37,26 +37,26 @@ Open Intelligent Automation Research Center's Basic React Starter Project. This 
 - ในโปรเจกต์ที่ทำอยู่ลองสร้างเป็นฟอร์มเล็กๆ ที่มีการเปลี่ยนค่าสเตจ เช่น สร้างฟอร์มรับค่าตัวเลข เมื่อมีการแก้ไขค่าตัวเลข ให้ไปเปลี่ยนค่าใน State และมีการนำค่าใน State ไปโชว์ เช่น
 
 ```jsx
-import React, { useState } from 'react'
+import React, { useState } from "react";
 export default function App() {
-  const [data, setData] = useState(0)
+  const [data, setData] = useState(0);
   return (
     <div>
       <input
         onChange={(event) => {
-          setData(event.target.value)
+          setData(event.target.value);
         }}
       />
       <div>Selected Number is {data}</div>
     </div>
-  )
+  );
 }
 ```
 
 - ลองทดลองการใช้งาน useEffect เช่นการสั่งให้ทุกครั้งที่ตัวเลขเปลี่ยน มีการ Alert ขึ้นมาที่หน้าจอ โดยที่ไม่เขียนไว้ตอนที่ Set Data แต่ใช้หลักของ useEffect ตรวจจับเวลาตัวเลขเกิดการเปลี่ยนแปลง
 
 ```jsx
-useEffect(() => {}, [data])
+useEffect(() => {}, [data]);
 ```
 
 ### Information
@@ -73,13 +73,13 @@ useEffect(() => {}, [data])
 - ลองใช้ axios ในการเรียก API จาก OpenAPI ต่างๆ เช่น พวก Starwar API แล้วเก็บมาไว้ใน State โดยการเรียกต้องเรียกผ่าน useEffect เพื่อไม่ให้มันทำหลายครั้ง
 
   ```jsx
-  const [data, setData] = useState()
+  const [data, setData] = useState();
 
   useEffect(() => {
-    axios.get('https://swapi.dev/api/people/1/').then((response) => {
-      setData(response.data)
-    })
-  }, [])
+    axios.get("https://swapi.dev/api/people/1/").then((response) => {
+      setData(response.data);
+    });
+  }, []);
   ```
 
 - ลองเก็บค่า basedURL ลงใน env ของ Frontend (สร้างเป็น .env ขึ้นมาบน Project Root) เช่นเก็บค่า `https://swapi.dev/api/` ไว้บน .env โดยมันจะต้องตั้งชื่อมีคำนำหน้าว่า REACT_APP เช่น `REACT_APP_API_URL=https://swapi.dev/api/` แล้วลองใช้ค่าจาก Environment Variable เช่น เรียกออกมาโดยการใช้ `process.env.REACT_APP_API_URL` แล้วมาต่อ String หรือ เอามาทำเป็น
@@ -89,13 +89,13 @@ useEffect(() => {}, [data])
   useEffect(() => {
     const getData = async () => {
       try {
-        const response = await axios.get('https://swapi.dev/api/people/1/')
-        setData(response.data)
+        const response = await axios.get("https://swapi.dev/api/people/1/");
+        setData(response.data);
       } catch (err) {
-        console.error(err.message)
+        console.error(err.message);
       }
-    }
-  }, [])
+    };
+  }, []);
   ```
 
 - ปัญหาที่อาจจะเกิดขึ้นคือเรื่องของ CORS
@@ -115,44 +115,84 @@ useEffect(() => {}, [data])
 
 ## Project 6 Create Basic Express Backend
 
+### Instruction and Code
+
+- ทดลองสร้าง Express Backend โดยไม่ต้องยังเชื่อมต่อกับ Database
+- ทดลองสร้าง API ที่มี GET/POST/PUT/DELETE แล้วลงทดสอบด้วย API Caller ไม่ว่าจะเป็น Postman, Insomnia, Swagger,etc.
+- แนะนำให้ลอง Follow จาก Link ที่ 1 ก่อนแล้วถ้ามั่นใจก็เพิ่มตัว MongoDB
+
+### Information
+
+- [สร้าง RESTful API ด้วย Express — Express 101](https://medium.com/@aofleejay/%E0%B8%AA%E0%B8%A3%E0%B9%89%E0%B8%B2%E0%B8%87-restful-api-%E0%B8%94%E0%B9%89%E0%B8%A7%E0%B8%A2-express-express-101-ee37cc4952b4)
+- [ExpressJS Official Doc](https://expressjs.com/)
+
 ## Project 7 Access Database and Basic Query
 
-## Project 8 React-Hook-Form
+### Instruction and Code
+
+- ติดตั้ง Mongo DB Community Server ในเครื่อง มันจะมาพร้อม MongoDB Compass และอาจจะลง Studio3T เป็นหนึ่ง GUI Tools ที่ช่วยได้
+- ลองทำ Backend Express ของเราให้เชื่อมต่อกับ MongoDB ได่้ โดยใช้ Mongoose ซึ่งเป็น ORM ตัวหนึ่งที่นิยมใน Node.js
+- เปลี่ยนจากการ Fetch ข้อมูลบน JSON หรือเชื่อมต่อคุยกับ Backend เฉยๆ ให้ Backend คุยกับ MongoDB
+- ลองฝึกการใช้การทำงานแบบ Asynchronous ใน JavaScript เช่นการใช้ async/await หรือการใช้ .then() หรือการใช้ Promise
+- ฝึกการทำ Error Handling เพราะในการดึงข้อมูลกับ Database มันเป็น I/O อย่างหนึ่ง เราควรเข้าถึงมันแบบ asynchronous แล้วอะไรที่เราไม่แน่ใจผลมันแน่นอน รวมไปถึง Asynchronous เราก็ควรเขียน Error Handling ไม่ว่าจะในรูปของ try catch หรือ .then() .catch() ก็ตาม
+
+### Information
+
+- [ทำ Backend API ด้วย Node.js และ MongoDB กันดีกว่า](https://devahoy.com/blog/2019/08/build-api-with-express-and-mongoose/)
+- [MongoDB Official Website](https://www.mongodb.com/)
+- [Mongoose Official Doc](https://mongoosejs.com/)
+- [Download MongoDB Community Server](https://www.mongodb.com/try/download/community)
+
+## Project 8 Frontend and Backend
+
+### Instruction and Code
+
+- เชื่อมต่อ Frontend กับ Backend เข้าด้วยกัน ลองยิง Request อาจจะเริ่มจาก GET จาก Frontend ไปที่ตัว Backend โดยใช้ axios หรือ library ตัวอื่นๆ ก็ได้
+- ลองดูปัญหาที่จะเกิดขึ้นในเรื่องของ CORS และทำยังไงให้ Backend สามารถอนุญาติให้ทำงานกับ Frontend ได้ โดยไม่ติด CORS
+- ลองเอาบางส่วนของ Backend API URL มาอยู่ในรูปแบบของ Config ไฟล์ ไม่ว่าจะเป็นไฟล์ .js ที่เก็บ config ไฟล์ json แล้วนำข้อมูลจาก config ตัวนี้ไปใช้ เพื่อลดการเขียนโค้ดซ้ำ หรือใส่ Hard Code มาเกินไป
+- ลองเอา URL ตัวนี้มาใส่ใน environment variable file หรือ .env อาจจะใช้ .env เดี่ยว หรือใช้ .env.development, .env.production
+
+### Information
+
+- [Axios](https://github.com/axios/axios)
+- [Environment Variable - Create React App](https://create-react-app.dev/docs/adding-custom-environment-variables)
+
+## Project 9 React-Hook-Form
 
 ### Instruction and Code
 
 - ลองใช้ React Hook Form กับการสร้างฟอร์ม และ การ POST ข้อมูลไปเก็บไว้ใน Database
 - การเอา Form Component จาก Library ง่าย ๆ เช่น rebass, reactstrap, headless ui, chakra-ui หรือ อาจจะเขียน Form Component เอง
-- การลง MUI ใน Project
+- การลงแบบ Controlled Form เช่น MUI (แนะนำ),Joy UI, Mantine, AntD ใน Project
 - การทำ Controlled Form โดยใช้ MUI กับ React Hook Form
 
   ```jsx
-  import { useForm, Controller } from 'react-hook-form'
-  import { TextField } from '@mui/materials'
+  import { useForm, Controller } from "react-hook-form";
+  import { TextField } from "@mui/materials";
   export default function App() {
-    const { handleSubmit, control } = useForm()
+    const { handleSubmit, control } = useForm();
 
     return (
       <div>
         <Controller
           name='remark'
           control={control}
-          defaultValue={manufacturingOrder?.remark || ''}
+          defaultValue={manufacturingOrder?.remark || ""}
           rules={{ required: false }}
           render={({ field }) => (
             <TextField
               {...field}
               label='หมายเหตุ'
               fullWidth
-              size={'small'}
+              size={"small"}
               rows={3}
               multiline={true}
-              helperText={errors.detail && 'กรุณาใส่ข้อมูล'}
+              helperText={errors.detail && "กรุณาใส่ข้อมูล"}
             />
           )}
         />
       </div>
-    )
+    );
   }
   ```
 
@@ -160,10 +200,24 @@ useEffect(() => {}, [data])
 
 - [React Hook Form](https://react-hook-form.com/get-started#Registerfields)
 - [MUI](https://mui.com/)
-
-## Project 9 Full 1 Model CRUD Frontend and Backend
+- [Mantine](https://mantine.dev/)
+- [AntD](https://ant.design/docs/react/introduce/)
+- [Useful Resource from Resource.fyi](https://resource.fyi/category/ui-libraries)
+- [Awesome React Component](https://github.com/brillout/awesome-react-components)
 
 ## Project 10 Frontend Structure
+
+### Instruction and Code
+
+- ลองหา React template มาเขียนดู เพราะว่าเขาจะวางโครงสร้างในส่วนของ Source Code ต่างๆ รวมถึง Design System ไว้แล้ว แนะนำว่าลองหาที่เป็น Tailwind CSS เลยหรือจะเป็นพวก Bootstrap ก็ได้
+- ลองปรับการวาง Folder Stucture ของเราให้เป็นคล้าย ๆ ใน Template หรือเราเอา Template ตั้ง แล้ว Implement โค้ดของเราใน Template ก็ได้
+
+### Information
+
+- [Creative Tim](https://www.creative-tim.com/templates/free)
+- [UI Deck Free](https://uideck.com/templates/resume-react/)
+- [Colorlib](https://colorlib.com/wp/free-react-templates/)
+- [35+ Free React templates and themes - in Dev.to](https://dev.to/davidepacilio/35-free-react-templates-and-themes-32ci)
 
 ## Project 11 Backend Structure
 
