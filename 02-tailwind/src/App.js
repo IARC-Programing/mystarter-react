@@ -6,7 +6,7 @@ function App() {
   const titleArray = ["banking", "logistic", "e-commerce", "computer"];
   return (
     <div>
-      <Topbar appTitle='สวัสดี' />
+      <Topbar appTitle='IARC Devboard' />
       {titleArray.map((titleElement) => (
         <ControlCard title={titleElement} />
       ))}
