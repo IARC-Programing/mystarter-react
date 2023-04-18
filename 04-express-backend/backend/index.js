@@ -1,35 +1,26 @@
 const express = require("express");
+const mongoose = require("mongoose");
+
+const userRouter = require("./routes/user.routes");
+
 const app = express();
 const port = 3001;
 
-const mockUser = [
-  { id: 1, name: "Theethawat", department: "Software" },
-  {
-    id: 2,
-    name: "Thanachit",
-    department: "Software",
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+const uri = "mongodb://127.0.0.1:27017/react-starter-test";
+mongoose.connect(uri).then(
+  () => {
+    console.log("Connection is Successful");
   },
-  { id: 3, name: "Paipan", department: "Software" },
-  { id: 4, name: "Aekapol", department: "Automation" },
-];
+  (err) => {
+    console.error("Connection to mongodb is error", err?.message);
+  }
+);
 
-app.get("/user", (req, res) => {
-  console.log("Find All Users");
-  res.json({ rows: mockUser });
-});
-
-app.get("/user/:id", (req, res) => {
-  console.log("Fine One User with Id" + req.params.id);
-  const foundUser = mockUser.find(
-    (data) => data.id === parseInt(req.params.id)
-  );
-  res.json(foundUser);
-});
-
-app.get("/", (req, res) => {
-  res.send("Hello World!");
-});
+app.use("/user", userRouter);
 
 app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`);
+  console.log(`App listening on port ${port}`);
 });
