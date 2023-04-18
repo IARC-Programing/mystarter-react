@@ -19,7 +19,7 @@ mongoose.connect(uri).then(
   }
 );
 
-app.use("/user", userRouter);
+app.use("/api/user", userRouter);
 
 app.listen(port, () => {
   console.log(`App listening on port ${port}`);
