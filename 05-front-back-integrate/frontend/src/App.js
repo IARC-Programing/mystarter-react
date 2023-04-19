@@ -1,5 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { Card, CardContent, Input } from "@mui/joy";
+import {
+  Button,
+  Card,
+  CardContent,
+  Input,
+  LinearProgress,
+  Table,
+} from "@mui/joy";
 import axios from "axios";
 import _ from "lodash";
 
@@ -9,20 +16,46 @@ import Topbar from "./Components/Topbar";
 function App() {
   const [searchTerm, setSearchTerm] = useState("");
   const [users, setUsers] = useState([]);
+  const [isReady, setIsReady] = useState(false);
 
-  useEffect(() => {
+  const getAllUser = () => {
+    setIsReady(false);
     axios
       .get("http://localhost:3001/api/user")
       .then((res) => {
         setUsers(res?.data?.rows);
+        setIsReady(true);
         console.log("User ", res?.data?.rows);
       })
       .catch((error) => {
         console.error("Error", error?.message);
       });
+  };
 
+  useEffect(() => {
+    getAllUser();
     return () => {};
   }, []);
+
+  const handleDeleteUser = (userId) => {
+    axios
+      .delete("http://localhost:3001/api/user/" + userId)
+      .then((res) => {
+        getAllUser();
+      })
+      .catch((error) => {
+        alert(error?.message);
+        console.error("Error", error?.message);
+      });
+  };
+
+  if (!isReady) {
+    return (
+      <div>
+        <LinearProgress />
+      </div>
+    );
+  }
 
   return (
     <div>
@@ -44,11 +77,31 @@ function App() {
             </Card>
             <div>
               <h3 className='font-bold'>User List</h3>
-              {_.map(users, (eachUser, index) => (
-                <div>
-                  {index + 1}. - {eachUser?.name}
-                </div>
-              ))}
+              <Table>
+                <thead>
+                  <tr>
+                    <th>ลำดับที่</th>
+                    <th>ชื่อ</th>
+                    <th>แผนก</th>
+                    <th>ดำเนินการ</th>
+                  </tr>
+                </thead>
+                {_.map(users, (eachUser, index) => (
+                  <tr>
+                    <td>{index + 1}</td>
+                    <td>{eachUser?.name}</td>
+                    <td>{eachUser?.department}</td>
+                    <td>
+                      <Button
+                        color='danger'
+                        onClick={() => handleDeleteUser(eachUser?._id)}
+                      >
+                        ลบ
+                      </Button>
+                    </td>
+                  </tr>
+                ))}
+              </Table>
             </div>
           </div>
         </div>
