@@ -21,7 +21,7 @@ function App() {
   const getAllUser = () => {
     setIsReady(false);
     axios
-      .get("http://localhost:3001/api/user")
+      .get(`${process.env.REACT_APP_API_URL}/user`)
       .then((res) => {
         setUsers(res?.data?.rows);
         setIsReady(true);
@@ -39,7 +39,7 @@ function App() {
 
   const handleDeleteUser = (userId) => {
     axios
-      .delete("http://localhost:3001/api/user/" + userId)
+      .delete(`${process.env.REACT_APP_API_URL}/user/${userId}`)
       .then((res) => {
         getAllUser();
       })
