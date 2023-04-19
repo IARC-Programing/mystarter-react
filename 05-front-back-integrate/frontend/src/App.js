@@ -5,19 +5,17 @@ import _ from "lodash";
 
 import Footer from "./Components/Footer";
 import Topbar from "./Components/Topbar";
-import ControlCard from "./Components/ControlCard";
 
 function App() {
-  const titleArray = ["banking", "logistic", "e-commerce", "computer"];
   const [searchTerm, setSearchTerm] = useState("");
-  const [starWarPeople, setStarWarPeople] = useState([]);
+  const [users, setUsers] = useState([]);
 
   useEffect(() => {
     axios
-      .get("https://swapi.dev/api/people/")
+      .get("http://localhost:3001/api/user")
       .then((res) => {
-        setStarWarPeople(res?.data?.results);
-        console.log("People ", res?.data?.results);
+        setUsers(res?.data?.rows);
+        console.log("User ", res?.data?.rows);
       })
       .catch((error) => {
         console.error("Error", error?.message);
@@ -29,41 +27,31 @@ function App() {
   return (
     <div>
       <Topbar appTitle='IARC Devboard' />{" "}
-      <div className='container'>
-        <Card>
-          <CardContent>
-            <div>Search Box</div>
-            <Input
-              placeholder='Input Some Search Word'
-              onChange={(e) => setSearchTerm(e.target.value)}
-            />
-            <div>
-              You Search <span className='text-blue-500'>{searchTerm}</span>
-            </div>
-          </CardContent>
-        </Card>
-
-        <div className='text-xl mx-4 my-2'>People in Starwar</div>
-        <div className='mx-4'>
-          {_.map(starWarPeople, (eachPeople, index) => (
-            <Card key={index} className='my-2'>
+      <div className='min-h-screen'>
+        <div className='flex justify-center '>
+          <div className='lg:w-3/4'>
+            <Card>
               <CardContent>
-                <div className='flex'>
-                  <div className='w-1/3'></div>
-                  <div className='w-2/3'>
-                    <li>Name: {eachPeople?.name}</li>
-                    <li>Height: {eachPeople?.height}</li>
-                    <li>Mass: {eachPeople?.mass}</li>
-                  </div>
+                <div>Search Box</div>
+                <Input
+                  placeholder='Input Some Search Word'
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                />
+                <div>
+                  You Search <span className='text-blue-500'>{searchTerm}</span>
                 </div>
               </CardContent>
             </Card>
-          ))}
+            <div>
+              <h3 className='font-bold'>User List</h3>
+              {_.map(users, (eachUser, index) => (
+                <div>
+                  {index + 1}. - {eachUser?.name}
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
-
-        {titleArray.map((titleElement) => (
-          <ControlCard title={titleElement} />
-        ))}
       </div>
       <Footer />
     </div>
