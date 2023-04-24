@@ -9,6 +9,7 @@ import {
 } from "@mui/joy";
 import axios from "axios";
 import _ from "lodash";
+import { useForm, Controller } from "react-hook-form";
 
 import Footer from "./Components/Footer";
 import Topbar from "./Components/Topbar";
@@ -17,6 +18,23 @@ function App() {
   const [searchTerm, setSearchTerm] = useState("");
   const [users, setUsers] = useState([]);
   const [isReady, setIsReady] = useState(false);
+  const { control, handleSubmit } = useForm();
+
+  const handleCreateUser = (data) => {
+    console.log("data", data);
+    setIsReady(false);
+    axios
+      .post(`${process.env.REACT_APP_API_URL}/user`, data)
+      .then((res) => {
+        axios.get(`${process.env.REACT_APP_API_URL}/user`).then((res) => {
+          setUsers(res?.data?.rows);
+          setIsReady(true);
+        });
+      })
+      .catch((error) => {
+        console.error("Error", error?.message);
+      });
+  };
 
   const getAllUser = () => {
     setIsReady(false);
@@ -61,7 +79,35 @@ function App() {
     <div>
       <Topbar appTitle='IARC Devboard' />{" "}
       <div className='min-h-screen'>
-        <div className='flex justify-center '>
+        <div className='flex justify-center  flex-wrap'>
+          <div className='lg:w-3/4 '>
+            <div className='my-1 font-semibold text-lg'>เพิ่มพนักงานใหม่</div>
+            <Card>
+              <CardContent>
+                <form onSubmit={handleSubmit(handleCreateUser)}>
+                  <div>ชื่อ</div>
+                  <Controller
+                    name='name'
+                    control={control}
+                    render={({ field }) => (
+                      <Input {...field} placeholder='ชื่อพนักงาน' />
+                    )}
+                  />
+                  <div>แผนก</div>
+                  <Controller
+                    name='department'
+                    control={control}
+                    render={({ field }) => (
+                      <Input {...field} placeholder='แผนก' />
+                    )}
+                  />
+                  <div>
+                    <Button type='submit'>บันทึก</Button>
+                  </div>
+                </form>
+              </CardContent>
+            </Card>
+          </div>
           <div className='lg:w-3/4'>
             <Card>
               <CardContent>
