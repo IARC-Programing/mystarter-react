@@ -8,6 +8,7 @@ import Topbar from "./Components/Topbar";
 
 import UserList from "./views/UserList";
 import CreateOneUser from "./views/CreateOneUser";
+import DetailUser from "./views/DetailUser";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Topbar appTitle='IARC Devboard' />{" "}
         <Routes>
           <Route path='/create' element={<CreateOneUser />} />
+          <Route path='/detail/:id' element={<DetailUser />} />
           <Route path='/' element={<UserList />} />
         </Routes>
         <Footer />

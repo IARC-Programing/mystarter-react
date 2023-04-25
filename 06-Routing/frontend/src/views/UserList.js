@@ -8,6 +8,7 @@ import {
   Table,
 } from "@mui/joy";
 import axios from "axios";
+import { Link } from "react-router-dom";
 import _ from "lodash";
 
 function UserList() {
@@ -88,6 +89,9 @@ function UserList() {
                     <td>{eachUser?.name}</td>
                     <td>{eachUser?.department}</td>
                     <td>
+                      <Link to={`/detail/${eachUser?._id}`}>
+                        <Button>รายละเอียด</Button>
+                      </Link>
                       <Button
                         color='danger'
                         onClick={() => handleDeleteUser(eachUser?._id)}
