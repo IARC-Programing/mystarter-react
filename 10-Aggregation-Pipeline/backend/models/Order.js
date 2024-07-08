@@ -9,6 +9,7 @@ const Order = new mongoose.Schema(
         quantity: Number,
       },
     ],
+    user: { type: mongoose.Types.ObjectId, ref: "User" },
   },
   {
     timestamps: true,
