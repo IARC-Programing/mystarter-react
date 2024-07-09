@@ -16,6 +16,47 @@ const pipeline = [
       user: { $arrayElemAt: ["$user", 0] },
     },
   },
+  {
+    $lookup: {
+      from: "products",
+      localField: "products.product",
+      foreignField: "_id",
+      as: "product_array",
+    },
+  },
+  {
+    $addFields: {
+      products: {
+        $map: {
+          input: "$products",
+          as: "inside_product",
+          in: {
+            $mergeObjects: [
+              "$$inside_product",
+              {
+                product: {
+                  $arrayElemAt: [
+                    "$product_array",
+                    {
+                      $indexOfArray: [
+                        "$product_array._id",
+                        "$$inside_product.product",
+                      ],
+                    },
+                  ],
+                },
+              },
+            ],
+          },
+        },
+      },
+    },
+  },
+  {
+    $project: {
+      product_array: 0,
+    },
+  },
 ];
 
 router.get("/", async (req, res) => {
@@ -24,6 +65,7 @@ router.get("/", async (req, res) => {
     const result = await Order.aggregate(pipeline);
     res.json(result);
   } catch (error) {
+    console.error(error?.message);
     res.status(404).json({ err: error });
   }
 });
