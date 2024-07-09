@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const Order = require("../models/Order");
+const mongoose = require("mongoose");
 
 const pipeline = [
   {
@@ -59,6 +60,15 @@ const pipeline = [
   },
 ];
 
+const findOnePipeline = (id) => [
+  {
+    $match: {
+      _id: new mongoose.Types.ObjectId(id),
+    },
+  },
+  ...pipeline,
+];
+
 router.get("/", async (req, res) => {
   console.log("Find All Order");
   try {
@@ -71,13 +81,12 @@ router.get("/", async (req, res) => {
 });
 
 router.get("/:id", async (req, res) => {
-  console.log("Find All Order");
+  console.log("Find One Order");
   try {
-    const result = await Order.findById(req?.params?.id).populate(
-      "products.product"
-    );
-    res.json(result);
+    const result = await Order.aggregate(findOnePipeline(req?.params?.id));
+    res.json(result?.[0]);
   } catch (error) {
+    console.error(error?.message);
     res.status(404).json({ err: error });
   }
 });
