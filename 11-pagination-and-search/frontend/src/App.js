@@ -12,6 +12,8 @@ import DetailUser from "./views/DetailUser";
 
 import ProductList from "./views/ProductList";
 
+import OrderList from "./views/OrderList";
+
 function App() {
   return (
     <div>
@@ -25,6 +27,9 @@ function App() {
           </Route>
           <Route path='product'>
             <Route index element={<ProductList />} />
+          </Route>
+          <Route path='order'>
+            <Route index element={<OrderList />} />
           </Route>
 
           <Route path='/' element={<UserList />} />

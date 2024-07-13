@@ -73,7 +73,7 @@ router.get("/", async (req, res) => {
   console.log("Find All Order");
   try {
     const result = await Order.aggregate(pipeline);
-    res.json(result);
+    res.json({ rows: result });
   } catch (error) {
     console.error(error?.message);
     res.status(404).json({ err: error });
