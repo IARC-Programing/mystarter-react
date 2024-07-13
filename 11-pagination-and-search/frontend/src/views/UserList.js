@@ -89,7 +89,7 @@ function UserList() {
                     <td>{eachUser?.name}</td>
                     <td>{eachUser?.department}</td>
                     <td>
-                      <Link to={`/detail/${eachUser?._id}`}>
+                      <Link to={`/user/detail/${eachUser?._id}`}>
                         <Button>รายละเอียด</Button>
                       </Link>
                       <Button
